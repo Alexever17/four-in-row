@@ -21,7 +21,9 @@ function drop(element) {
 }
 
 function winCheck() {
-
+  if (counter == 42) {
+    draw();
+  }
 }
 
 function findFreeCell(rowNumber) {
@@ -44,4 +46,30 @@ function colorCheck() {
   } else {
     return "green"
   }
+}
+
+function draw() {
+  document.getElementById("title").innerHTML = "It is a draw!";
+  document.querySelectorAll(".cell").forEach(function (element) {
+    console.log(element);
+    element.classList.add("grey");
+  });
+}
+
+function greenWins() {
+  document.getElementById("title").innerHTML = "Green wins!";
+  document.querySelectorAll(".cell").forEach(function (element) {
+    console.log(element);
+    element.classList.remove("blue");
+    element.classList.add("green");
+  });
+}
+
+function blueWins() {
+  document.getElementById("title").innerHTML = "Blue wins!";
+  document.querySelectorAll(".cell").forEach(function (element) {
+    console.log(element);
+    element.classList.remove("green");
+    element.classList.add("blue");
+  });
 }

@@ -37,9 +37,9 @@ body {
   background: white;
   border:0.1em solid #000;
   border-radius:0.2em;
+  transition: all 0.1s;
   &:hover{
-    background-color:#000;
-    border:0.1em solid #FFF;
+    transform: scale(1.1)
   }
 }
 
@@ -49,6 +49,10 @@ body {
 
 .green {
   background: rgb(114, 255, 109);
+}
+
+.grey {
+  background: rgb(133, 133, 133);
 }
 
 @media only screen and (max-width: 810px) {

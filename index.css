@@ -46,10 +46,12 @@ body {
   background: white;
   border: 0.1em solid #000;
   border-radius: 0.2em;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
 }
 .cell:hover {
-  background-color: #000;
-  border: 0.1em solid #FFF;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .blue {
@@ -58,6 +60,10 @@ body {
 
 .green {
   background: #72ff6d;
+}
+
+.grey {
+  background: #858585;
 }
 
 @media only screen and (max-width: 810px) {
