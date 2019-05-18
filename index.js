@@ -35,9 +35,12 @@ function winCheck(id, rowNumber) {
   }
   let cell = document.getElementById(id);
   let color = cell.classList[1];
-  verticalCheck(cell, id, rowNumber, color);
-  horizontalCheck(cell, id, rowNumber, color);
-  diagonalCheck(cell, id, rowNumber, color);
+  let wonV = verticalCheck(cell, id, rowNumber, color);
+  let wonH = horizontalCheck(cell, id, rowNumber, color);
+  let wonD = diagonalCheck(cell, id, rowNumber, color);
+  if (wonV === true || wonH === true || wonD === true) {
+    if (color == "green") { greenWins();} else { blueWins();}
+  }
   return
 }
 
@@ -57,17 +60,55 @@ function findFreeCell(rowNumber) {
   }
 }
 
-//searches if there are any combinations where a the color of the set stone won vertically
+//searches if there are any combinations where the color of the set stone won vertically
 function verticalCheck(cell, id, rowNumber, color) {
+  let verticalColorCount = 1;
+  //checks by going up the column
+  for (let index = id+1; index < rowNumber*10+7; index++) {
+    if (document.getElementById(index).classList[1] == color) {
+      verticalColorCount += 1;
+      if (verticalColorCount == 4) {
+        return true;
+      }
+      //this happens when its the other color
+    } else if (document.getElementById(index).classList[1] == true) {
+      verticalColorCount = 0;
+    } //if field is empty nothing happens
+    else {
+      break
+    }
+  }
+  //goes down the column
+  for (let index = id - 1; index > rowNumber * 10; index--) {
+    if (document.getElementById(index).classList[1] == color) {
+      verticalColorCount += 1;
+      if (verticalColorCount == 4) {
+        return true;
+      }
+      //this happens when its the other color
+    } else if (document.getElementById(index).classList[1] == true) {
+      verticalColorCount = 0;
+    }
+    //if field is empty nothing happens
+    else {
+      break
+    }
+  }
 
+  //final return if it wasn't triggered in the loops
+  if (verticalColorCount == 4) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-//searches if there are any combinations where a the color of the set stone won horizontally
+//searches if there are any combinations where the color of the set stone won horizontally
 function horizontalCheck(cell, id, rowNumber, color) {
 
 }
 
-//searches if there are any combinations where a the color of the set stone won diagonally
+//searches if there are any combinations where the color of the set stone won diagonally
 function diagonalCheck(cell, id, rowNumber, color) {
 
 }
