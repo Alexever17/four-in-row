@@ -35,10 +35,11 @@ function winCheck(id, rowNumber) {
   }
   let cell = document.getElementById(id);
   let color = cell.classList[1];
-  let wonV = verticalCheck(cell, id, rowNumber, color);
-  let wonH = horizontalCheck(cell, id, rowNumber, color);
-  let wonD = diagonalCheck(cell, id, rowNumber, color);
-  if (wonV === true || wonH === true || wonD === true) {
+  let wonV = verticalCheck(id, rowNumber, color);
+  let wonH = horizontalCheck(id, rowNumber, color);
+  let wonDR = diagonalCheckR(id, rowNumber, color);
+  let wonDL = diagonalCheckL(id, rowNumber, color);
+  if (wonV === true || wonH === true || wonDR === true || wonDL === true) {
     if (color == "green") { greenWins();} else { blueWins();}
   }
   return
@@ -61,7 +62,7 @@ function findFreeCell(rowNumber) {
 }
 
 //searches if there are any combinations where the color of the set stone won vertically
-function verticalCheck(cell, id, rowNumber, color) {
+function verticalCheck(id, rowNumber, color) {
   let verticalColorCount = 1;
   //checks by going up the column
   for (let index = id+1; index < rowNumber*10+7; index++) {
@@ -104,13 +105,137 @@ function verticalCheck(cell, id, rowNumber, color) {
 }
 
 //searches if there are any combinations where the color of the set stone won horizontally
-function horizontalCheck(cell, id, rowNumber, color) {
-
+function horizontalCheck(id, rowNumber, color) {
+  let horizontalColorCount = 1;
+  //checks by going up the row
+  for (let index = id + 10; index < 77; index += 10) {
+    if (document.getElementById(index).classList[1] == color) {
+      horizontalColorCount += 1;
+      if (horizontalColorCount == 4) {
+        return true;
+      }
+      //this happens when its the other color
+    } else if (document.getElementById(index).classList[1] == true) {
+      horizontalColorCount = 0;
+    } //if field is empty nothing happens
+    else {
+      break
+    }
+  }
+  //checks by going down the row
+  for (let index = id - 10; index > 10; index -= 10) {
+    if (document.getElementById(index).classList[1] == color) {
+      horizontalColorCount += 1;
+      if (horizontalColorCount == 4) {
+        return true;
+      }
+      //this happens when its the other color
+    } else if (document.getElementById(index).classList[1] == true) {
+       horizontalColorCount = 0;
+    } //if field is empty nothing happens
+    else {
+      break
+    }
+  }
+  //final return if it wasn't triggered in the loops
+  if (horizontalColorCount == 4) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-//searches if there are any combinations where the color of the set stone won diagonally
-function diagonalCheck(cell, id, rowNumber, color) {
+//searches if there are any combinations where the color of the set stone won diagonally leaning right
+//there will be a second diagonal check for leaning onto left
+function diagonalCheckR(id, rowNumber, color) {
+  let diagonalColorCount = 1;
+  //checks by going up and right the diagonal
+  for (let index = id + 11; index < 77; index += 11) {
+    if (document.getElementById(index)) {      
+      if (document.getElementById(index).classList[1] == color) {
+        diagonalColorCount += 1;
+        if (diagonalColorCount == 4) {
+          return true;
+        }
+        //this happens when its the other color
+      } else if (document.getElementById(index).classList[1] == true) {
+        diagonalColorCount = 0;
+      } //if field is empty nothing happens
+      else {
+        break
+      }
+    }
+  }
+  //checks by going down and left the diagonal
+  for (let index = id - 11; index > 10; index -= 11) {
+    if (document.getElementById(index)) {
+      if (document.getElementById(index).classList[1] == color) {
+        diagonalColorCount += 1;
+        if (diagonalColorCount == 4) {
+          return true;
+        }
+        //this happens when its the other color
+      } else if (document.getElementById(index).classList[1] == true) {
+        diagonalColorCount = 0;
+      } //if field is empty nothing happens
+      else {
+        break
+      }
+    }
+  }
 
+  //final return if it wasn't triggered in the loops
+  if (diagonalColorCount == 4) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//searches if there are any combinations where the color of the set stone won diagonally leaning left
+function diagonalCheckL(id, rowNumber, color) {
+  let diagonalColorCount = 1;
+  //checks by going up and right the diagonal
+  for (let index = id + 9; index < 77; index += 9) {
+    if (document.getElementById(index)) {
+      if (document.getElementById(index).classList[1] == color) {
+        diagonalColorCount += 1;
+        if (diagonalColorCount == 4) {
+          return true;
+        }
+        //this happens when its the other color
+      } else if (document.getElementById(index).classList[1] == true) {
+        diagonalColorCount = 0;
+      } //if field is empty nothing happens
+      else {
+        break
+      }
+    }
+  }
+  //checks by going down and left the diagonal
+  for (let index = id - 9; index > 10; index -= 9) {
+    if (document.getElementById(index)) {
+      if (document.getElementById(index).classList[1] == color) {
+        diagonalColorCount += 1;
+        if (diagonalColorCount == 4) {
+          return true;
+        }
+        //this happens when its the other color
+      } else if (document.getElementById(index).classList[1] == true) {
+        diagonalColorCount = 0;
+      } //if field is empty nothing happens
+      else {
+        break
+      }
+    }
+  }
+  
+  //final return if it wasn't triggered in the loops
+  if (diagonalColorCount == 4) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 //depending on the counter the color for the tile gets selected
