@@ -20,16 +20,19 @@ body {
   margin: 0 0 1em 0;
 }
 
+//the div with the columns
 .main {
   display: flex;
   justify-content: center;
 }
 
+//actually a column of cells, but accidentally named row
 .row {
   display: flex;
   flex-direction: column-reverse;
 }
 
+//a single square from the middle block
 .cell {
   width: 6vw;
   height: 6vw;

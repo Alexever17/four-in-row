@@ -1,46 +1,79 @@
+//global counter of placed stones, determines the color and if there is a draw
 let counter = 0;
 
+//the eventlistener for the placement of stones
 document.addEventListener('click', function (e) {
   if (e.target.classList[0] == "cell") {
     drop(e.target)
   }
 })
 
+//the placement of the stones start here. Element being the clicked on cell
 function drop(element) {
   let id = element.id;
   idString = id.toString();
   rowNumber = parseInt(idString[0], 10);
-
+  //user can click on anywhere in a column to drop the stone to the lowest point of the column
+  //false is returned if all 6 cells are full
   let selectedCell = findFreeCell(rowNumber);
+  //there are no free cells in this column nothing works and the function stops
   if (selectedCell === false) {
     return
   }  
-  document.getElementById(selectedCell).classList.add(colorCheck());
+  //the free cells gets the right color
+  document.getElementById(selectedCell).classList.add(colorDefiner());
   counter += 1;
-  winCheck()
+  winCheck(selectedCell, rowNumber);
+  return
 }
 
-function winCheck() {
+//the overarching function that determines the draw or a win
+function winCheck(id, rowNumber) {
   if (counter == 42) {
     draw();
+    return
   }
+  let cell = document.getElementById(id);
+  let color = cell.classList[1];
+  verticalCheck(cell, id, rowNumber, color);
+  horizontalCheck(cell, id, rowNumber, color);
+  diagonalCheck(cell, id, rowNumber, color);
+  return
 }
 
+//goes through all the cells in a column and gives the first free one 51 color 52 color 53 -- free
 function findFreeCell(rowNumber) {
   for (let index = 1; index < 7; index++) {
     let cellClass = document.getElementById(rowNumber * 10 + index).classList[1];
-
+    //if there is a free cell
     if (cellClass !== "green" && cellClass !== "blue") {
       let foundCell = rowNumber * 10 + index;
       return foundCell
     }
+    //if no free cells
     if (index == 6) {
       return false;
     }
   }
 }
 
-function colorCheck() {
+//searches if there are any combinations where a the color of the set stone won vertically
+function verticalCheck(cell, id, rowNumber, color) {
+
+}
+
+//searches if there are any combinations where a the color of the set stone won horizontally
+function horizontalCheck(cell, id, rowNumber, color) {
+
+}
+
+//searches if there are any combinations where a the color of the set stone won diagonally
+function diagonalCheck(cell, id, rowNumber, color) {
+
+}
+
+//depending on the counter the color for the tile gets selected
+function colorDefiner() {
   if (counter % 2 == 0) {
     return "blue"
   } else {
@@ -48,27 +81,27 @@ function colorCheck() {
   }
 }
 
+//Displays the draw message, colors all tiles in a grey
 function draw() {
   document.getElementById("title").innerHTML = "It is a draw!";
   document.querySelectorAll(".cell").forEach(function (element) {
-    console.log(element);
     element.classList.add("grey");
   });
 }
 
+//Displays the win message, colors all tiles in a green
 function greenWins() {
   document.getElementById("title").innerHTML = "Green wins!";
   document.querySelectorAll(".cell").forEach(function (element) {
-    console.log(element);
     element.classList.remove("blue");
     element.classList.add("green");
   });
 }
 
+//Displays the win message, colors all tiles in a blue
 function blueWins() {
   document.getElementById("title").innerHTML = "Blue wins!";
   document.querySelectorAll(".cell").forEach(function (element) {
-    console.log(element);
     element.classList.remove("green");
     element.classList.add("blue");
   });
