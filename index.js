@@ -195,7 +195,7 @@ function diagonalCheckR(id, rowNumber, color) {
 //searches if there are any combinations where the color of the set stone won diagonally leaning left
 function diagonalCheckL(id, rowNumber, color) {
   let diagonalColorCount = 1;
-  //checks by going up and right the diagonal
+  //checks by going down and right the diagonal
   for (let index = id + 9; index < 77; index += 9) {
     if (document.getElementById(index)) {
       if (document.getElementById(index).classList[1] == color) {
@@ -212,7 +212,7 @@ function diagonalCheckL(id, rowNumber, color) {
       }
     }
   }
-  //checks by going down and left the diagonal
+  //checks by going up and left the diagonal
   for (let index = id - 9; index > 10; index -= 9) {
     if (document.getElementById(index)) {
       if (document.getElementById(index).classList[1] == color) {
@@ -229,7 +229,7 @@ function diagonalCheckL(id, rowNumber, color) {
       }
     }
   }
-  
+
   //final return if it wasn't triggered in the loops
   if (diagonalColorCount == 4) {
     return true;
