@@ -2,3 +2,90 @@
   font-family: 'Pacifico', cursive;
 }
 
+body {
+  background-color: rgb(255, 218, 158);
+  font-size: calc(0.6em + 1vw);
+}
+
+.title {
+  text-align: center;
+  font-size: 2em;
+  line-height: 1em;
+  margin: 0.6em 0 0 0;
+}
+
+.author {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 0 0 1em 0;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.cell {
+  width: 6vw;
+  height: 6vw;
+  outline: none;
+  background: white;
+  border:0.1em solid #000;
+  border-radius:0.2em;
+  &:hover{
+    background-color:#000;
+    border:0.1em solid #FFF;
+  }
+}
+
+.blue {
+  background: rgb(109, 124, 255);
+}
+
+.green {
+  background: rgb(114, 255, 109);
+}
+
+@media only screen and (max-width: 810px) {
+  .cell {
+    width: 12vw;
+    height: 12vw;
+  }
+}
+
+.button-holder {
+  text-align: center;
+  margin-top: 0.5em;
+
+  button {
+    min-width: 6vw;
+    outline: none;
+    background: white;
+    font-size: 1em;
+    padding:0.35em 1.2em;
+    border:0.1em solid #000;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    color:#000;
+    text-align:center;
+    transition: all 0.2s;
+    &:hover{
+      color:#FFF;
+      background-color:#000;
+      border:0.1em solid #FFF;
+    }
+    &:active{
+      transform: scale(0.97)
+    }
+  }
+
+}
+
+

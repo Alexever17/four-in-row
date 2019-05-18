@@ -1,3 +1,98 @@
 * {
   font-family: 'Pacifico', cursive;
 }
+
+body {
+  background-color: #ffda9e;
+  font-size: calc(0.6em + 1vw);
+}
+
+.title {
+  text-align: center;
+  font-size: 2em;
+  line-height: 1em;
+  margin: 0.6em 0 0 0;
+}
+
+.author {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 0 0 1em 0;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+.cell {
+  width: 6vw;
+  height: 6vw;
+  outline: none;
+  background: white;
+  border: 0.1em solid #000;
+  border-radius: 0.2em;
+}
+.cell:hover {
+  background-color: #000;
+  border: 0.1em solid #FFF;
+}
+
+.blue {
+  background: #6d7cff;
+}
+
+.green {
+  background: #72ff6d;
+}
+
+@media only screen and (max-width: 810px) {
+  .cell {
+    width: 12vw;
+    height: 12vw;
+  }
+}
+.button-holder {
+  text-align: center;
+  margin-top: 0.5em;
+}
+.button-holder button {
+  min-width: 6vw;
+  outline: none;
+  background: white;
+  font-size: 1em;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #000;
+  border-radius: 0.12em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  color: #000;
+  text-align: center;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.button-holder button:hover {
+  color: #FFF;
+  background-color: #000;
+  border: 0.1em solid #FFF;
+}
+.button-holder button:active {
+  -webkit-transform: scale(0.97);
+          transform: scale(0.97);
+}
